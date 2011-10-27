@@ -9,6 +9,9 @@ import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+# UI
+import ui_mainwindow
+
 class MainWindow(QMainWindow):
     """ Main window class """
 
