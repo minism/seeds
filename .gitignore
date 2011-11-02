@@ -1,2 +1,5 @@
 # Binary
 *.pyc
+
+# OSX
+.DS_Store
