@@ -1,1 +1,1 @@
-../../../../stem/stem.js
+/Users/josh/dev/js/stem/stem.js
