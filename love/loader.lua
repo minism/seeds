@@ -1,5 +1,5 @@
 -- Asset namespaces
-local loader = {}
+local loader = Context()
 
 local progress = 0
 local finished = function() end

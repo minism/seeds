@@ -1,3 +1,5 @@
-local game = {}
+game = Context()
 
-return game
+function game.draw()
+    love.graphics.circle('fill', 200, 200, 200, 200)
+end
