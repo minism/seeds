@@ -1,11 +1,10 @@
 function love.conf(t)
     -- Custom settings
-    NAME    = 'unnamed'
     VERSION = '0.0.1'
     DEBUG   = true
 
 	-- Love settings
-	t.title = NAME
+	t.title = "unnamed"
 	t.author = "joshbothun@gmail.com"
 	t.identity = nil
 	t.console = true
