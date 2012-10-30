@@ -6,13 +6,13 @@ import package
 try:
     longdesc = open('README.rst').read()
 except Exception:
-    longdesc = "Long description"
+    longdesc = "Safe long description"
 
 setup(
     # Metadata
     name='package',
     version='.'.join(map(str, package.VERSION))
-    description='',
+    description='Description',
     long_description=longdesc,
     author='Josh Bothun',
     author_email='joshbothun@gmail.com',
@@ -22,6 +22,6 @@ setup(
     install_requires=[]
 
     # Program data
-    # scripts=['bin/command'],
+    scripts=['bin/command'],
     packages=['package'],
 )
