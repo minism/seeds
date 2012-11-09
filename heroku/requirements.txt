@@ -1,0 +1,13 @@
+Django==1.4
+
+# Timezone support
+pytz==2012c
+
+# jinja2 templates
+Jinja2==2.6
+git+https://github.com/concentricsky/jingo.git#egg=jingo
+
+# Heroku
+gunicorn==0.14.3
+dj-database-url==0.2.0
+
