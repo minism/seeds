@@ -1,4 +1,5 @@
 Django==1.4
+psycopg2==2.4.5
 
 # Timezone support
 pytz==2012c
