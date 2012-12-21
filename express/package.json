@@ -1,0 +1,23 @@
+{
+  "author": "",
+  "name": "express_template",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/minism/seeds.git"
+  },
+  "dependencies": {
+    "connect": "*",
+    "connect-assets": "*",
+    "express": "*",
+    "ect": "*",
+    "coffee-script": "*",
+    "lodash": "*",
+    "less": "*"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
