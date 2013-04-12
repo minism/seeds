@@ -10,7 +10,7 @@
     "connect": "*",
     "connect-assets": "*",
     "express": "*",
-    "ect": "*",
+    "jade": "*",
     "coffee-script": "*",
     "lodash": "*",
     "less": "*"

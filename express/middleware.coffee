@@ -10,9 +10,11 @@ module.exports =
         messages = res.locals.messages = req.session.messages = []
 
         # Register shortcut functions on request object
-        req.info    = (text) -> messages.push(new Message(text))
-        req.success = (text) -> messages.push(new Message(text, 'success', 'ok'))
-        req.error   = (text) -> messages.push(new Message("<strong>Error: </strong>#{ text }", 'error', 'exclamation-sign'))
-        req.warn    = (text) -> messages.push(new Message("<strong>Warning: </strong>#{ text }", 'warn', 'flag'))
+        req.message = (type, text) ->
+            switch type
+                when 'success' then messages.push(new Message(text, 'success', 'ok'))
+                when 'error' then messages.push(new Message("<strong>Error: </strong>#{ text }", 'error', 'exclamation-sign'))
+                when 'warning' then messages.push(new Message("<strong>Warning: </strong>#{ text }", 'warn', 'flag'))
+                else messages.push(new Message(text))
 
         next()

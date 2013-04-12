@@ -1,7 +1,6 @@
 express     = require 'express'
 http        = require 'http'
 path        = require 'path'
-ect         = require 'ect'
 
 routes      = require './routes'
 middleware  = require './middleware'
@@ -17,8 +16,9 @@ app.configure ->
     # View config
     viewpath = path.join(__dirname, '/views')
     app.set 'views',  viewpath
-    app.set 'view engine', 'html'
-    app.engine 'html', ect({root: viewpath}).render
+    app.set 'view engine', 'jade'
+    app.set 'view options',
+        layout: false
 
     # Session
     app.use express.cookieParser()
@@ -38,10 +38,10 @@ app.configure ->
     app.use express.methodOverride()
 
     # Coffeescript/LESS compilation and bundling
-    app.use require('connect-assets')({src: 'public'})
+    app.use require('connect-assets')({src: 'static'})
 
     # Static file serving
-    app.use '/public', express.static(path.join(__dirname, 'public'))
+    app.use '/static', express.static(path.join(__dirname, 'static'))
 
     # App-wide middleware
     app.use middleware.messages

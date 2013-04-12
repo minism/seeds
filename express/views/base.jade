@@ -1,0 +1,21 @@
+doctype 5
+html
+  head
+    != css('bootstrap/bootstrap')
+    != css('screen')
+    block styles
+
+  body
+    div.navbar.navbar-static-top
+      div.navbar-inner
+        div.container
+          a.brand(href="/") Sup
+
+    div.container#wrap
+      include partials/messages
+      block content
+
+    != js('lib/jquery')
+    != js('lib/lodash')
+    != js('lib/bootstrap')
+    block scripts
