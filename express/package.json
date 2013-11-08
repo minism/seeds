@@ -7,13 +7,11 @@
     "url": "git://github.com/minism/seeds.git"
   },
   "dependencies": {
-    "connect": "*",
-    "connect-assets": "*",
+    "coffee-script": "*",
     "express": "*",
     "jade": "*",
-    "coffee-script": "*",
-    "lodash": "*",
-    "less": "*"
+    "less-middleware": "*",
+    "lodash": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {},

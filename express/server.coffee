@@ -2,59 +2,73 @@ express     = require 'express'
 http        = require 'http'
 path        = require 'path'
 
-routes      = require './routes'
 middleware  = require './middleware'
 settings    = require './settings'
 
 
-# Express configuration and middleware
+# Filesystem paths
+VIEW_PATH = path.join(__dirname, 'views')
+STATIC_PATH = path.join(__dirname, 'static')
+
+
+# Express global configuration
 app = express()
 app.configure ->
-    # Network config
-    app.set 'port', settings.PORT
+  # Network config
+  app.set 'port', settings.PORT
 
-    # View config
-    viewpath = path.join(__dirname, '/views')
-    app.set 'views',  viewpath
-    app.set 'view engine', 'jade'
-    app.set 'view options',
-        layout: false
+  # View config
+  app.set 'views',  VIEW_PATH
+  app.set 'view engine', 'jade'
+  app.set 'view options',
+    # Use jade inheritance instead of express layout
+    layout: false
 
-    # Session
-    app.use express.cookieParser()
-    app.use express.session
-        secret: settings.SECRET_KEY
-       
-    # Favicon url shortcut
-    app.use express.favicon('')
+  # Session
+  app.use express.cookieParser()
+  app.use express.session
+    store: new express.session.MemoryStore()
+    secret: settings.SECRET_KEY
 
-    # Logging
-    app.use express.logger('dev')
+  # Favicon url shortcut
+  app.use express.favicon('')
 
-    # Request body parsing (JSON, ...)
-    app.use express.bodyParser()
+  # Logging
+  app.use express.logger('dev')
 
-    # Allow routes with methods PUT, DELETE, etc...
-    app.use express.methodOverride()
+  # Request body parsing (JSON, ...)
+  app.use express.bodyParser()
 
-    # Coffeescript/LESS compilation and bundling
-    app.use require('connect-assets')({src: 'static'})
+  # Allow routes with methods PUT, DELETE, etc...
+  app.use express.methodOverride()
 
-    # Static file serving
-    app.use '/static', express.static(path.join(__dirname, 'static'))
+  # Static file serving
+  # app.use '/static', express.static STATIC_PATH
 
-    # App-wide middleware
-    app.use middleware.messages
+  # Global middleware
+  app.use middleware.messages
 
 
-# Dev profile
+# Dev profile configuration
 app.configure 'development', ->
-    app.use(express.errorHandler())
+  app.use(express.errorHandler())
+
+  # Auto LESS compilation
+  less_middleware = require('less-middleware')
+  app.use less_middleware
+    src: path.join(STATIC_PATH, 'css')
+    prefix: '/static/css'
+    dumpLineNumbers: 'comments'
+    compress: false
+
+  # Static file serving
+  app.use '/static', express.static STATIC_PATH
 
 
-# Register application routes
-require('./routes')(app)
+# Register all controllers on app object
+require('./controllers')(app)
 
 
+# Boot HTTP server
 http.createServer(app).listen app.get('port'), ->
-    console.log "Listening on port #{ app.get('port') }..."
+  console.log "Listening on port #{ app.get('port') }..."

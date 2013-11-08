@@ -1,11 +1,11 @@
+# Application-wide settings
 settings =
+  PORT: 3000
+  SECRET_KEY: '24kjbakjbiouhsdboiua083'
 
-    PORT: 3000
-    SECRET_KEY: '24kjbakjbiouhsdboiua083'
 
-
-# Override with environment, if set
+# Override any defined property with environment vars, if set
 for key, val in settings
-    settings[key] = process.env[key] or val
+  settings[key] = process.env[key] or val
 
 module.exports = settings
